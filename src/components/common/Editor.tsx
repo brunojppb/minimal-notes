@@ -29,16 +29,13 @@ function Editor() {
 
   /** Load initial data from local store. only triggered on the first render */
   useEffect(() => {
-    console.log('mounted. load content...');
     const current: any | null = trixRef.current;
     if (current && content) {
       const {editor} = current;
-      console.log('content mount: ', content);
       let finalContent = content;
       if (typeof content === "string") {
         finalContent = JSON.parse(content);
       }
-      console.log('editor load');
       editor.loadJSON(finalContent);
     }
     // eslint-disable-next-line
