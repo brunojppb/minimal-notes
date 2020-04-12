@@ -1,16 +1,23 @@
 import React from "react";
-import Editor from "./components/common/Editor";
-import styled from "styled-components";
-import Sidebar from "./components/common/Sidebar";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Routes from "./network/Routes";
+import MainContainer from "./components/common/MainContainer";
 
 function App() {
   return (
-    <main className="container h-screen w-screen flex flex-row">
-      <Sidebar/>
-      <main className="flex-auto">
-        <Editor />
-      </main>
-    </main>
+    <Router>
+      <Switch>
+        <Route path={Routes.INDEX} exact>
+          <div>Home</div>
+        </Route>
+        <Route path={Routes.APP}>
+          <MainContainer/>
+        </Route>
+        <Route>
+          <h2>Not found</h2>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
