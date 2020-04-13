@@ -6,21 +6,40 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 
 const Wrapper = styled("div")`
 
+  trix-toolbar {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 1rem;
+    .trix-button-group {
+      border: none;
+      .trix-button {
+        border: none;
+         &.trix-active {
+          background: #e2e8f0;
+         }
+      }
+      .trix-button--icon::before {
+        opacity: 1;
+      }
+      .trix-button--icon:disabled::before {
+        opacity: 0.125;
+      }
+    }
+  }
+
   trix-editor {
     width: 100%;
+    height: 100%;
     display: block;
     border: none;
-    
+    overflow-y: scroll;
+    flex: 1 1;
     h1 {
       font-size: 2rem;
       font-weight: bold;
     }
   }
 
-  trix-toolbar {
-    width: 100%;
-    max-width: 700px;
-  }
 `;
 
 function Editor() {
@@ -58,17 +77,24 @@ function Editor() {
   }, [trixRef, setContent]);
 
   return (
-    <Wrapper>
-      <h1>Editor</h1>
-      <input type="hidden" id="trix"/>
-      {/* 
+    <Wrapper className="overflow-hidden relative flex flex-1">
+      <div className="flex-1 flex flex-col">
+        {/*
         // @ts-ignore */}
-      <trix-editor
-        input="trix"
-        placeholder="Start your notes here"
-        id="trix-editor"
-        ref={trixRef}
-      />
+        <trix-toolbar id="trix-toolbar"/>
+        <div className="flex-1 overflow-y-scroll relative">
+          <input type="hidden" id="trix"/>
+          {/*
+        // @ts-ignore */}
+          <trix-editor
+            input="trix"
+            placeholder="Start your notes here"
+            id="trix-editor"
+            toolbar="trix-toolbar"
+            ref={trixRef}
+          />
+        </div>
+      </div>
     </Wrapper>
   );
 }

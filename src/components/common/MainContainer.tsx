@@ -18,6 +18,9 @@ export default function MainContainer() {
           <Route path={Routes.NOTEBOOKS}>
             <NotebookContainer/>
           </Route>
+          <Route>
+            <NotebookContainer/>
+          </Route>
         </Switch>
       </div>
     </main>
