@@ -6,14 +6,14 @@ export default class Routes {
   static RESET_PASSWORD: string = '/reset-pw';
   static APP: string            = '/app';
   static NOTEBOOKS: string      = '/app/notebooks';
-  static NOTEBOOK: string       = '/app/notebooks/:notebookId';
-  static NOTEBOOK_NOTES: string = '/app/notebooks/:notebookId/notes';
-  static NOTEBOOK_NOTE: string  = '/app/notebooks/:notebookId/notes/:noteId';
+  static ADD_NOTEBOOK: string   = '/app/notebooks/new';
+  static NOTEBOOK: string       = '/app/notebook/:notebookId';
+  static NOTEBOOK_NOTE: string  = '/app/notebook/:notebookId/notes/:noteId';
   static SETTINGS: string       = '/app/settings';
 
   /** Routes builder */
   static notebookRoute(notebookId: string): string {
-    return `/app/notebooks/${notebookId}`;
+    return `/app/notebook/${notebookId}`;
   }
 
 }

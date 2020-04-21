@@ -8,11 +8,11 @@ export default function NotebookContainer() {
 
   return(
     <Switch>
+      <Route path={Routes.NOTEBOOKS}>
+        <NotebookListPage/>
+      </Route>
       <Route path={Routes.NOTEBOOK}>
         <NotebookDetailPage/>
-      </Route>
-      <Route>
-        <NotebookListPage/>
       </Route>
     </Switch>
   )

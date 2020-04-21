@@ -15,9 +15,6 @@ export default function MainContainer() {
           <Route path={Routes.SETTINGS} exact>
             <SettingsPage/>
           </Route>
-          <Route path={Routes.NOTEBOOKS}>
-            <NotebookContainer/>
-          </Route>
           <Route>
             <NotebookContainer/>
           </Route>

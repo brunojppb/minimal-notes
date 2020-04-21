@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
 import Routes from "../../network/Routes";
+import AddNotebook from "./AddNotebook";
 
 const NotebookListPageWrapper = styled('div')`
   
@@ -13,10 +14,9 @@ export default function NotebookListPage() {
     <NotebookListPageWrapper className="flex flex-col py-4 px-4">
       <h2 className="font-bold">My Notebooks</h2>
       <div className="w-full mt-4">
-        <button className="p-2 border rounded hover:bg-gray-100 text-sm font-semibold">
-          <i className="cil-plus mr-2"/>
+        <Link to={Routes.ADD_NOTEBOOK} className="py-3 px-4 bg-gray-700 inline-block rounded-md text-white hover:bg-gray-600">
           New notebook
-        </button>
+        </Link>
       </div>
       <table className="table-fixed my-4 text-left w-full">
         <thead className="bg-gray-200">
@@ -29,7 +29,7 @@ export default function NotebookListPage() {
         <tbody>
           <tr>
             <td className="p-2">
-              <Link to={Routes.notebookRoute("1")}>
+              <Link to={Routes.notebookRoute("1")} className="underline">
                 Motocycle Adventures
               </Link>
             </td>
@@ -48,6 +48,9 @@ export default function NotebookListPage() {
           </tr>
         </tbody>
       </table>
+      <Switch>
+        <Route path={Routes.ADD_NOTEBOOK} component={AddNotebook}/>
+      </Switch>
     </NotebookListPageWrapper>
   );
 
