@@ -3,6 +3,7 @@ export default class Routes {
   static INDEX: string          = '/';
   static LOGIN: string          = '/login';
   static SIGNUP: string         = '/signup';
+  static RESET_PASSWORD: string = '/reset-pw';
   static APP: string            = '/app';
   static NOTEBOOKS: string      = '/app/notebooks';
   static NOTEBOOK: string       = '/app/notebooks/:notebookId';

@@ -27,7 +27,7 @@ const LoaderContainer = styled('div')`
     border-top: 1em solid rgba(56,151,240, 0.2);
     border-right: 1em solid rgba(56,151,240, 0.2);
     border-bottom: 1em solid rgba(56,151,240, 0.2);
-    border-left: 1em solid #3897f0;
+    border-left: 1em solid #2d3748;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);

@@ -45,9 +45,8 @@ export default function AuthWrapper(props: AuthWrapperProps) {
 
   const [{
     user,
-    isLoading,
-    error
-  }, dispatch] = useReducer(reducer, {isLoading: false})
+    isLoading
+  }, dispatch] = useReducer(reducer, {isLoading: true}); // we always start this wrapper by loading the user profile
 
   const cleanUpAfterLogout = useCallback(() => {
     new Cookies().remove(Backend.AUTH_COOKIE_NAME, {path: '/'});
@@ -86,7 +85,9 @@ export default function AuthWrapper(props: AuthWrapperProps) {
   useEffect(() => {
     // interceptor here after get profile success
     // So we can redirect user to login after 401 (Unauthorized)
-    let deregisterInterceptor = () => {};
+    dispatch({type: 'request'});
+    let deregisterInterceptor = () => {
+    };
     fetchProfile().then(() => { // make sure to always register the interceptor
       deregisterInterceptor = Backend.getInstance().registerInterceptor(cleanUpAfterLogout, 401);
     });

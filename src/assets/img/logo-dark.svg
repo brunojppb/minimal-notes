@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="282px" height="133px" viewBox="0 0 282 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
-    <title>Group</title>
+    <title>logo-dark</title>
     <desc>Created with Sketch.</desc>
     <g id="logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="iPhone-11" transform="translate(-69.000000, -394.000000)">
-            <g id="Group" transform="translate(69.000000, 387.000000)">
-                <g id="phoenix" transform="translate(0.500000, 7.500000)">
+        <g id="iPhone-11" transform="translate(-66.000000, -268.000000)">
+            <g id="logo-dark" transform="translate(66.000000, 268.000000)">
+                <g id="phoenix" transform="translate(0.500000, 0.500000)">
                     <g id="upper" fill="#A0AFC0">
                         <polygon id="Line" points="7.16223221e-15 6 31.2294224 47.7354238 108.670324 82.854689 60.0973521 88.9902 14.7334626 53.5526316"></polygon>
                         <polygon id="Line-2" points="149 81 92 106 38.0832578 104.257782 36.3665326 106.796462 34.0740691 100.906695 46.4066827 97.0085892 52.23151 92.8480673"></polygon>
@@ -18,7 +18,7 @@
                     </g>
                 </g>
                 <text id="Tranquility" font-family="Futura-Medium, Futura" font-size="59" font-weight="400" fill="#2D3748">
-                    <tspan x="2.34838867" y="61">Tranquility</tspan>
+                    <tspan x="0.348388672" y="77">Tranquility</tspan>
                 </text>
             </g>
         </g>

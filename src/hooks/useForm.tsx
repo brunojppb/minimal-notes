@@ -1,34 +1,33 @@
-import {FormEvent, SyntheticEvent, useState} from 'react';
+import {FormEvent, SyntheticEvent, useCallback, useState} from 'react';
 
-type OnSubmit = (values: {[prop: string]: string}) => void
+export type OnSubmit = (values: {[prop: string]: string}) => void
 
-interface Values {
+export interface Values {
   [prop: string]: string
 }
 
 export const useForm = (onSubmit: OnSubmit, initialValues: Values = {}) => {
 
   const [values, setValues] = useState(initialValues);
-
-  const handleSubmit = (event: FormEvent<HTMLInputElement>): void => {
+  const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>): void => {
     if (event) {
       event.preventDefault();
     }
     if (onSubmit) {
       onSubmit(values);
     }
-  };
+  }, [values, onSubmit]);
 
-  const handleChange = (event: SyntheticEvent) => {
+  const handleChange = useCallback((event: SyntheticEvent) => {
     event.persist();
     const target = event.target as HTMLInputElement
     const {name, value} = target;
     setValues(values => ({ ...values, [name]: value }));
-  };
+  }, []);
 
-  return [
+  return {
     values,
-    handleSubmit,
     handleChange,
-  ];
+    handleSubmit,
+  };
 };
