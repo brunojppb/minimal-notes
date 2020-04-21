@@ -18,7 +18,7 @@ export default function NotebookListPage() {
           New notebook
         </button>
       </div>
-      <table className="table-fixed my-4 text-left">
+      <table className="table-fixed my-4 text-left w-full">
         <thead className="bg-gray-200">
           <tr>
             <th className="w-1/2 p-2">Name</th>

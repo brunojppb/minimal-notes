@@ -2,9 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
 import Routes from "../../network/Routes";
+import whiteLogo from '../../assets/img/logo_white.svg';
 
 const Nav = styled("nav")`
   width: 241px;
+  .logo {
+    width: 150px;
+  }
   li:not(:first-child) {
     margin-top: 0.5rem;
   }
@@ -13,9 +17,9 @@ const Nav = styled("nav")`
 export default function Sidebar() {
 
   return(
-    <Nav className="bg-gray-900 h-full flex-none px-4 py-4 absolute top-0 left-0 bottom-0">
+    <Nav className="bg-gray-900 h-full flex-none px-4 py-4">
       <div className="flex flex-row">
-        <h2 className="text-white text-bold">Minimal Notes</h2>
+        <img src={whiteLogo} alt="minimal notes" className="logo"/>
       </div>
       <ul className="my-4">
         <SidebarLink to={Routes.NOTEBOOKS}>

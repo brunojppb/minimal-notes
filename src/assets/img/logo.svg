@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="282px" height="133px" viewBox="0 0 282 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-11" transform="translate(-69.000000, -394.000000)">
+            <g id="Group" transform="translate(69.000000, 387.000000)">
+                <g id="phoenix" transform="translate(0.500000, 7.500000)">
+                    <g id="upper" fill="#A0AFC0">
+                        <polygon id="Line" points="7.16223221e-15 6 31.2294224 47.7354238 108.670324 82.854689 60.0973521 88.9902 14.7334626 53.5526316"></polygon>
+                        <polygon id="Line-2" points="149 81 92 106 38.0832578 104.257782 36.3665326 106.796462 34.0740691 100.906695 46.4066827 97.0085892 52.23151 92.8480673"></polygon>
+                        <polygon id="Line-3" points="281 2.09545595e-14 221 81 143.5 104.25943 101.443551 107.495178 206.181739 62.1345669"></polygon>
+                        <polygon id="Line-4" points="253 70 214 104 175.441224 108.334433 154.178011 105.638337 209.765255 93.8982311"></polygon>
+                    </g>
+                    <g id="bottom" transform="translate(62.354176, 108.000000)" fill="#3A4B53">
+                        <polygon id="Line-5" points="137.645824 8 83.6458238 -7.28306304e-14 39.0893746 2.53543066 0 0.334432679 45.2079406 11.8066275 75.1458238 9.74889724 68.8229119 15.2691422 78.8707847 22.9143137 81.1458238 9.74889724 85.5561892 23.9799467 97.213491 22.9143137 86.6458238 8 105.255502 21.6236363 117.418678 17.9157915 91.8238353 6.22489155 123.453672 16.11607"></polygon>
+                    </g>
+                </g>
+                <text id="Tranquility" font-family="Futura-Medium, Futura" font-size="59" font-weight="400" fill="#2D3748">
+                    <tspan x="2.34838867" y="61">Tranquility</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

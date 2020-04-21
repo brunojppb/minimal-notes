@@ -18,4 +18,4 @@ h3 {
 
 @import "tailwindcss/utilities";
 
-@import '~@coreui/icons/css/all.css';
+@import '../../../node_modules/@coreui/icons/css/all.css';

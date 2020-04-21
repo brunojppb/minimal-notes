@@ -9,7 +9,7 @@ const NotebookNoteWrapper = styled('div')`
 `;
 
 const NotebookNotesSection = styled('section')`
-  width: 320px;
+  flex: 0 0 320px;
 `;
 
 export default function NotebookDetailPage() {

@@ -10,7 +10,7 @@ export default function MainContainer() {
   return (
     <main className="h-screen w-full flex flex-row relative">
       <Sidebar/>
-      <div className="w-full" style={{marginLeft: 241}}>
+      <div className="w-full">
         <Switch>
           <Route path={Routes.SETTINGS} exact>
             <SettingsPage/>

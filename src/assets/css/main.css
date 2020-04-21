@@ -10928,7 +10928,7 @@ h3 {
   transition-duration: 1000ms;
 }
 
-@import '~@coreui/icons/css/all.css';
+@import '../../../node_modules/@coreui/icons/css/all.css';
 
 @media (min-width: 640px) {
   .sm\:sr-only {
