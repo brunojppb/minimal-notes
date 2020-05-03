@@ -1,7 +1,8 @@
 import React, {ReactNode, createContext, useEffect, useCallback, useReducer} from 'react';
 import Cookies from 'universal-cookie';
-import Backend, {User} from '../../network/Backend';
+import Backend from '../../network/Backend';
 import Loader from '../common/Loader';
+import {User} from "../../models/user";
 
 type State = {
   user?: User
@@ -22,7 +23,7 @@ interface AuthWrapperProps {
 interface AuthContextProps {
   user?: User
   onLogout: () => void
-  onLogin: (token: string) => void
+  onLogin: (token: string) => Promise<void>
   updateUser: (user: User) => void
 }
 
@@ -71,11 +72,11 @@ export default function AuthWrapper(props: AuthWrapperProps) {
       })
   };
 
-  const onLogin = (token: string): void => {
+  const onLogin = (token: string): Promise<void> => {
     const now = new Date();
     const oneYearFromNow = new Date(now.setFullYear(now.getFullYear() + 1));
     new Cookies().set(Backend.AUTH_COOKIE_NAME, token, {path: '/', expires: oneYearFromNow});
-    fetchProfile();
+    return fetchProfile();
   };
 
   const updateUser = (user: User) => {

@@ -1,17 +1,47 @@
-import React from "react";
-import styled from "styled-components";
+import React, {useEffect, useReducer} from "react";
 import {Link, Route, Switch} from "react-router-dom";
+import dayjs from 'dayjs';
 import Routes from "../../network/Routes";
 import AddNotebook from "./AddNotebook";
+import {Notebook} from "../../models/notebook";
+import Backend from "../../network/Backend";
 
-const NotebookListPageWrapper = styled('div')`
-  
-`;
+type CurrentState = "request" | "success" | "error";
+type State = {
+  notebooks: Notebook[]
+  state: CurrentState
+}
+
+type Action =
+  | { type: 'request' }
+  | { type: 'success', notebooks: Notebook[] }
+  | { type: 'error', error: string };
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'request':
+      return {...state, state: "request"}
+    case 'success':
+      return {notebooks: action.notebooks, state: "success"}
+    case 'error':
+      return {...state, state: "error"}
+  }
+}
 
 export default function NotebookListPage() {
 
+  const [{notebooks, state}, dispatch] = useReducer(reducer, {notebooks: [], state: "request"});
+
+  useEffect(() => {
+    Backend.getInstance().getNotebooks().then(notebooks => {
+      dispatch({type: 'success', notebooks});
+    }).catch(error => {
+      dispatch({type: "error", error: "could not load notebooks"});
+    });
+  }, [dispatch])
+
   return(
-    <NotebookListPageWrapper className="flex flex-col py-4 px-4">
+    <div className="flex flex-col py-4 px-4">
       <h2 className="font-bold">My Notebooks</h2>
       <div className="w-full mt-4">
         <Link to={Routes.ADD_NOTEBOOK} className="py-3 px-4 bg-gray-700 inline-block rounded-md text-white hover:bg-gray-600">
@@ -27,31 +57,26 @@ export default function NotebookListPage() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="p-2">
-              <Link to={Routes.notebookRoute("1")} className="underline">
-                Motocycle Adventures
-              </Link>
-            </td>
-            <td className="p-2">21</td>
-            <td className="p-2">21.03.2020</td>
-          </tr>
-          <tr className="bg-gray-100">
-            <td className="p-2">Elixir compiler and fundamentals</td>
-            <td className="p-2">12</td>
-            <td className="p-2">21.03.2020</td>
-          </tr>
-          <tr>
-            <td className="p-2">Exploring Scala concurrency</td>
-            <td className="p-2">43</td>
-            <td className="p-2">21.03.2020</td>
-          </tr>
+        { notebooks.map(notebook => {
+          return(
+            <tr key={notebook.id}>
+              <td className="p-2">
+                <Link to={Routes.notebookRoute(notebook.id)} className="underline">
+                  {notebook.name}
+                </Link>
+              </td>
+              <td className="p-2">{notebook.totalEntries}</td>
+              <td className="p-2">{dayjs(notebook.createdAt).format('DD.MM.YYYY')}</td>
+            </tr>
+          )
+          })
+        }
         </tbody>
       </table>
       <Switch>
         <Route path={Routes.ADD_NOTEBOOK} component={AddNotebook}/>
       </Switch>
-    </NotebookListPageWrapper>
+    </div>
   );
 
 }

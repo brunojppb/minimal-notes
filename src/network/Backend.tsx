@@ -1,17 +1,7 @@
 import axios, {AxiosInstance} from 'axios'
 import Cookies from "universal-cookie";
-
-export interface User {
-  id: number,
-  email: string
-  firstName: string
-  lastName: string
-}
-
-export interface UserLogin {
-  token: string
-  user: User
-}
+import {User, UserLogin} from "../models/user";
+import {Notebook} from "../models/notebook";
 
 export default class Backend {
   private static instance: Backend
@@ -79,6 +69,19 @@ export default class Backend {
     };
     return this._backend.post('/api/signup', data).then(response => {
       return response.data as UserLogin;
+    });
+  }
+
+  public postCreateNotebook(id: string, name: string): Promise<Notebook> {
+    return this._backend.post('/api/notebooks', {id, name}).then(response => {
+      return response.data as Notebook;
+    });
+  }
+
+  public getNotebooks(): Promise<Notebook[]> {
+    return this._backend.get('/api/notebooks').then(response => {
+      const {notebooks} = response.data;
+      return notebooks as Notebook[];
     });
   }
 

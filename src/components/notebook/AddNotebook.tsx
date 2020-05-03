@@ -1,13 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
+import {v4 as uuid} from 'uuid';
+import {useHistory} from 'react-router-dom';
+
 import {Link} from "react-router-dom";
 import Routes from "../../network/Routes";
+import {useForm} from "../../hooks/useForm";
+import Backend from "../../network/Backend";
 
 const AddNotebookWrapper = styled("div")`
   transition: opacity 0.25s ease;
 `;
 
 export default function AddNotebook() {
+
+  const history = useHistory()
+
+  const [isSaving, set] = useState(false);
+  const {values, handleChange, handleSubmit} = useForm((submitValues) => {
+    const {name} = submitValues;
+    set(true);
+    const notebookId = uuid();
+    Backend.getInstance().postCreateNotebook(notebookId, name).then(notebook => {
+      history.push(Routes.notebookRoute(notebookId))
+    })
+  });
+
+  const {name} = values;
+  const isButtonEnabled = name !== undefined && name.length > 2 && !isSaving;
+  const disabledClasses = isButtonEnabled ? '' : 'opacity-50 cursor-not-allowed';
 
   return (
     <AddNotebookWrapper
@@ -23,24 +44,27 @@ export default function AddNotebook() {
           </div>
 
 
-          <form className="">
+          <form className="" onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                 Notebook name
               </label>
               <input
                 autoFocus={true}
+                name="name"
                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name" type="text" name="name" placeholder="Give this notebook a nice name" required={true}/>
+                id="name"
+                type="text"
+                placeholder="Give this notebook a cool name"
+                required={true}
+                onChange={handleChange}/>
             </div>
 
             <div className="flex justify-end pt-2">
               <Link to={Routes.NOTEBOOKS}
-                className="px-4 bg-transparent p-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-800 mr-2">Cancel
+                    className="px-4 bg-transparent p-3 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-800 mr-2">Cancel
               </Link>
-              <button className="py-3 px-4 bg-gray-700 rounded-md text-white hover:bg-gray-600" type="submit">
-                Save
-              </button>
+              <input type="submit" className={`py-3 px-4 bg-gray-700 rounded-md text-white hover:bg-gray-600 ${disabledClasses}`} disabled={!isButtonEnabled} value="save"/>
             </div>
           </form>
 
@@ -48,6 +72,6 @@ export default function AddNotebook() {
       </div>
 
     </AddNotebookWrapper>
-);
+  );
 
 }
